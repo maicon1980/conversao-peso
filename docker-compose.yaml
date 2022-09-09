@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+
+  app:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    image: maiconnf1980/conv-peso:latest
+    container_name: app-conv-peso
+    restart: unless-stopped  
+    ports:
+    - "80:80"
