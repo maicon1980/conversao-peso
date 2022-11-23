@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: conversao-peso
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: convert-peso
+  template:
+    metadata:
+      labels:
+        app: convert-peso
+    spec:
+      containers:
+        - name: convert-peso
+          image: maiconnf1980/conv-peso
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: conversao-peso
+spec:
+  type: NodePort
+  ports:
+  - port: 80
+    targetPort: 80
+    nodePort: 30081
+  selector:
+    app: convert-peso
